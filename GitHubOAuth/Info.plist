@@ -23,7 +23,15 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>oauthLab0916</string>
+				<string>gitHubOAuthLab-12345</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>GitHubTestOAuthLab-0916</string>
 			</array>
 		</dict>
 	</array>

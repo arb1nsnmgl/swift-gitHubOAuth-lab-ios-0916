@@ -15,6 +15,7 @@ extension Notification.Name {
 }
 
 extension URL {
+    
     func getQueryItemValue(named name: String) -> String? {
         
         let components = URLComponents(url: self, resolvingAgainstBaseURL: false)

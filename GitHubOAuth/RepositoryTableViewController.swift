@@ -9,24 +9,24 @@
 import UIKit
 
 class RepositoryTableViewController: UITableViewController {
-
+    
     let store = RepositoryDataStore.sharedInstance
     
     // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = "Repositories"
         
         store.getRepositories { error in
             
-            (error == nil) ? self.tableView.reloadData() : print("\(error?.localizedDescription)")
+            (error == nil) ? self.tableView.reloadData() : print(error?.localizedDescription)
             
         }
-
+        
     }
-
+    
     // MARK: Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,23 +35,25 @@ class RepositoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! RepositoryTableViewCell
-
+        
         cell.repository = store.repositories[indexPath.row]
         return cell
     }
-
+    
     // MARK: Action
     
     @IBAction func logoutButtonTapped(_ sender: AnyObject) {
         
         let error = GitHubAPIClient.deleteAccessToken()
         
-        if error == nil {
-            NotificationCenter.default.post(name: .closeReposTVC, object: nil)
+        if (error != nil) {
+            
+            print(error)
+            
         } else {
-            print("\(error?.localizedDescription)")
+            
+            NotificationCenter.default.post(name: .closeReposTVC, object: nil)
         }
-
+        
     }
-
 }
